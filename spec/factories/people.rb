@@ -4,4 +4,8 @@ FactoryGirl.define do
     email Faker::Internet.email
     role 'admin'
   end
+
+  trait :project_default do
+
+  end
 end

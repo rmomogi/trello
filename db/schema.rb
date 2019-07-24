@@ -29,8 +29,11 @@ ActiveRecord::Schema.define(version: 2019_07_24_144156) do
   end
 
   create_table "projects", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "manager_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["manager_id"], name: "index_projects_on_manager_id"
   end
 
   create_table "tasks", force: :cascade do |t|
