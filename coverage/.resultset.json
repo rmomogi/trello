@@ -1,0 +1,55 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/mnt/c/workspace/trello/config/environment.rb": [
+        null,
+        1,
+        null,
+        null,
+        0
+      ],
+      "/mnt/c/workspace/trello/config/application.rb": [
+        1,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null
+      ],
+      "/mnt/c/workspace/trello/config/boot.rb": [
+        1,
+        null,
+        1,
+        0
+      ]
+    },
+    "timestamp": 1564291577
+  }
+}

@@ -6,6 +6,7 @@ RSpec.describe History, type: :model do
   describe '#associations' do
     it { is_expected.to belong_to :owner }
     it { is_expected.to belong_to :requester }
+    it { is_expected.to have_many :tasks }
   end
 
   describe '#validations' do
@@ -15,6 +16,18 @@ RSpec.describe History, type: :model do
       [1, 2, 3, 5, 8, 13].each do |number|
         history.points = number
         expect(history.valid?).to be_truthy
+      end
+    end
+
+    context '#done_tasks?' do
+      context 'does when tasks done' do
+        before { history.tasks << build_list(:task, 3, :done) }
+        it { expect(history.valid?).to be_truthy }
+      end
+
+      context 'does when tasks not done' do
+        before { history.tasks << build_list(:task, 3) }
+        it { expect(history.valid?).to be_falsey }
       end
     end
   end

@@ -3,6 +3,8 @@ require 'spec_helper'
 require 'database_cleaner'
 require 'shoulda/matchers'
 require 'aasm/rspec'
+require 'simplecov'
+SimpleCov.start
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)

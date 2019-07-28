@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_07_24_144156) do
   create_table "histories", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "requester_id"
-    t.string "status"
+    t.string "status", default: "pending"
     t.bigint "owner_id"
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -47,8 +47,12 @@ ActiveRecord::Schema.define(version: 2019_07_24_144156) do
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.string "description"
+    t.boolean "done", default: false
+    t.bigint "history_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["history_id"], name: "index_tasks_on_history_id"
   end
 
 end
