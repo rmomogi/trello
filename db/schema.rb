@@ -16,8 +16,18 @@ ActiveRecord::Schema.define(version: 2019_07_24_144156) do
   enable_extension "plpgsql"
 
   create_table "histories", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "requester_id"
+    t.string "status"
+    t.bigint "owner_id"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "deadline"
+    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_histories_on_owner_id"
+    t.index ["requester_id"], name: "index_histories_on_requester_id"
   end
 
   create_table "people", force: :cascade do |t|

@@ -2,6 +2,7 @@
 require 'spec_helper'
 require 'database_cleaner'
 require 'shoulda/matchers'
+require 'aasm/rspec'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
