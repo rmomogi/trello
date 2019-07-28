@@ -45,6 +45,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'pry-rails'
   gem 'shoulda-matchers'
+  gem 'simplecov'
 end
 
 group :development do
@@ -62,3 +63,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'aasm'
 gem 'validates_email_format_of'
 gem 'faker'
+gem 'paper_trail'
