@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :person do
     name  { Faker::Name.name }
@@ -6,6 +8,5 @@ FactoryBot.define do
   end
 
   trait :project_default do
-
   end
 end

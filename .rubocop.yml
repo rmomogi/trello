@@ -1,0 +1,17 @@
+inherit_gem:
+  relaxed-rubocop: .rubocop.yml
+
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "db/migrate/**/*"
+    - "db/schema.rb"
+    - "db/seeds/**/*"
+    - "db/seeds.rb"
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
+    - "vendor/**/*"
+    - "config/initializers/**"
+    - "lib/tasks/*"
+    - "app/controllers/devise/*"
+    - "config/*.*"

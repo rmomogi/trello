@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 class History < ApplicationRecord
   include AASM
+
+  has_paper_trail
 
   belongs_to :owner, class_name: 'Person'
   belongs_to :requester, class_name: 'Person'
@@ -8,7 +12,7 @@ class History < ApplicationRecord
   validates :name, presence: true
   validates :status, presence: true
   validates :points, inclusion: { in: [1, 2, 3, 5, 8, 13],
-    message: "%{value} is not a valid point" }
+                                  message: "%{value} is not a valid point" }
 
   validate :done_tasks?
 
@@ -38,7 +42,7 @@ class History < ApplicationRecord
   private
 
   def done_tasks?
-    unless !self.tasks.map(&:done).uniq.include? false
+    if tasks.map(&:done).uniq.include? false
       errors.add(:tasks, 'not done')
     end
   end

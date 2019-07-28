@@ -1,5 +1,7 @@
-class Task < ApplicationRecord
-	belongs_to :history
+# frozen_string_literal: true
 
-	validates :description, presence: true
+class Task < ApplicationRecord
+  belongs_to :history
+
+  validates :description, presence: true
 end
