@@ -48,7 +48,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
-  gem 'json-schema'
+  gem 'json_matchers'
 end
 
 group :development do
