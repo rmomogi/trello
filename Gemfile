@@ -49,6 +49,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'json_matchers'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -68,3 +69,4 @@ gem 'faker'
 gem 'paper_trail'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'validates_email_format_of'
+gem 'devise'

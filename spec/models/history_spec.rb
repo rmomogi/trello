@@ -27,7 +27,7 @@ RSpec.describe History, type: :model do
         history.finished_at = DateTime.now - 3.days
       end
 
-      it { expect(history.finished_at > history.started_at).to be_falsey }
+      it { expect(history.valid?).to be_falsey }
     end
 
     context '#done_tasks' do
@@ -47,7 +47,7 @@ RSpec.describe History, type: :model do
     it { expect(history).to have_state(:pending) }
     it { expect(history).to transition_from(:pending).to(:started).on_event(:starting) }
     it { expect(history).to transition_from(:started).to(:delivered).on_event(:delivering) }
-    it { expect(history).to transition_from(:delivered).to(:done).on_event(:doning) }
+    it { expect(history).to transition_from(:delivered).to(:done).on_event(:donning) }
 
     it { expect(history).to transition_from(:delivered).to(:pending).on_event(:rollback) }
     it { expect(history).to transition_from(:started).to(:pending).on_event(:rollback) }
@@ -72,7 +72,7 @@ RSpec.describe History, type: :model do
       before do
         history.starting
         history.delivering
-        history.doning
+        history.donning
       end
 
       it { expect(history).to have_state(:done) }

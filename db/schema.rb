@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_07_28_052745) do
     t.bigint "requester_id"
     t.string "status", default: "pending"
     t.bigint "owner_id"
+    t.text "description", default: ""
     t.datetime "started_at"
     t.datetime "finished_at"
     t.datetime "deadline"
@@ -47,7 +48,7 @@ ActiveRecord::Schema.define(version: 2019_07_28_052745) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "description"
+    t.string "description", default: ""
     t.boolean "done", default: false
     t.bigint "history_id"
     t.datetime "created_at", null: false

@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "required": ["id", "name", "requester_id", "status", "owner_id", "description", "started_at", "finished_at", "deadline", "points"],
+  "properties": {
+    "id": { "type": ["null", "integer"] },
+    "name": { "type": ["null","string"] },
+    "requester_id": { "type": ["null", "integer"] },
+    "status": { "type": ["string"] },
+    "owner_id": { "type": ["null", "integer"] },
+    "description": { "type": ["null", "string"] },
+    "started_at": { "type": ["null", "string"] },
+    "finished_at": { "type": ["null", "string"] },
+    "deadline": { "type": ["null", "string"] },
+    "points": { "type": ["null", "integer"] }
+  }
+}

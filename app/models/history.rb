@@ -31,7 +31,7 @@ class History < ApplicationRecord
       transitions from: :started, to: :delivered
     end
 
-    event :doning, after: :finish_history do
+    event :donning, after: :finish_history do
       transitions from: :delivered, to: :done
     end
 
