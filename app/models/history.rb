@@ -14,15 +14,16 @@ class History < ApplicationRecord
   validates :points, inclusion: { in: [1, 2, 3, 5, 8, 13],
                                   message: "%{value} is not a valid point" }
 
-  validate :done_tasks?
+  validate :done_tasks
+  validate :started_after_finished
 
   aasm column: 'status' do
     state :pending, initial: true
     state :started
     state :delivered
-    state :accepted
+    state :done
 
-    event :starting do
+    event :starting, after: :start_history do
       transitions from: :pending, to: :started
     end
 
@@ -30,20 +31,41 @@ class History < ApplicationRecord
       transitions from: :started, to: :delivered
     end
 
-    event :accepting do
-      transitions from: :delivered, to: :accepted
+    event :doning, after: :finish_history do
+      transitions from: :delivered, to: :done
     end
 
-    event :rollback do
-      transitions from: [:started, :delivered, :accepted], to: :pending
+    event :rollback, after: :rollback_pending do
+      transitions from: [:started, :delivered, :done], to: :pending
     end
   end
 
   private
 
-  def done_tasks?
+  def done_tasks
     if tasks.map(&:done).uniq.include? false
       errors.add(:tasks, 'not done')
     end
+  end
+
+  def started_after_finished
+    return if finished_at.blank? || started_at.blank?
+
+    if finished_at < started_at
+      errors.add(:finished_at, "must be after the start date")
+    end
+  end
+
+  def rollback_pending
+    self.finished_at = nil
+    self.started_at = nil
+  end
+
+  def start_history
+    self.started_at = DateTime.current
+  end
+
+  def finish_history
+    self.finished_at = DateTime.current
   end
 end

@@ -21,7 +21,16 @@ RSpec.describe History, type: :model do
       end
     end
 
-    context '#done_tasks?' do
+    context 'validate finished_at' do
+      before do
+        history.starting
+        history.finished_at = DateTime.now - 3.days
+      end
+
+      it { expect(history.finished_at > history.started_at).to be_falsey }
+    end
+
+    context '#done_tasks' do
       context 'does when tasks done' do
         before { history.tasks << build_list(:task, 3, :done) }
         it { expect(history.valid?).to be_truthy }
@@ -38,11 +47,11 @@ RSpec.describe History, type: :model do
     it { expect(history).to have_state(:pending) }
     it { expect(history).to transition_from(:pending).to(:started).on_event(:starting) }
     it { expect(history).to transition_from(:started).to(:delivered).on_event(:delivering) }
-    it { expect(history).to transition_from(:delivered).to(:accepted).on_event(:accepting) }
+    it { expect(history).to transition_from(:delivered).to(:done).on_event(:doning) }
 
     it { expect(history).to transition_from(:delivered).to(:pending).on_event(:rollback) }
     it { expect(history).to transition_from(:started).to(:pending).on_event(:rollback) }
-    it { expect(history).to transition_from(:accepted).to(:pending).on_event(:rollback) }
+    it { expect(history).to transition_from(:done).to(:pending).on_event(:rollback) }
 
     context '#starting' do
       before { history.starting }
@@ -59,14 +68,14 @@ RSpec.describe History, type: :model do
       it { expect(history).to have_state(:delivered) }
     end
 
-    context '#accepting' do
+    context '#done' do
       before do
         history.starting
         history.delivering
-        history.accepting
+        history.doning
       end
 
-      it { expect(history).to have_state(:accepted) }
+      it { expect(history).to have_state(:done) }
     end
   end
 end
