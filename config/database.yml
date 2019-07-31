@@ -82,7 +82,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: trello_production
-  username: trello
-  password: <%= ENV['TRELLO_DATABASE_PASSWORD'] %>
+  host: ec2-107-21-216-112.compute-1.amazonaws.com
+  database: d2l2m5epgsmasr
+  username: wdkfukvhjwwtup
+  password: f3d91639fa87a5ad1d4ccea20efc166d8c1cdc8c4179ee57ef4b59d0b547ca5f
