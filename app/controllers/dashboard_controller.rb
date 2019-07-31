@@ -3,7 +3,11 @@ class DashboardController < BaseController
 
 	def index
 		@projects = Project.all
-		@default_project = Project.find session[:default_project]
+		if session[:default_project]
+			@default_project = Project.find session[:default_project]
+		else
+			@default_project = ''
+		end
 
 		@histories_pending = History.pending.by_project(session[:default_project])
 		@histories_started = History.started
