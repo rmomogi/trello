@@ -30,6 +30,11 @@
 	      	</div>
 			</div>
 			<div class='modal-footer'>
+				<span class='font-weight-bold'>Mudar status: </span>
+				<% @states.each do |state| %>
+					<%= link_to t("state.#{state}"), histories_change_status_path(id: @history.id, event: state), {:method => 'post', :class => 'btn btn-warning'}  %>
+				<% end %>
+				<div class="pl-4"></div>
 			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	      <button type="submit" class="btn btn-primary">Save changes</button>
 	     </div>

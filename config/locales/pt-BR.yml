@@ -1,6 +1,9 @@
 ---
 pt-BR:
   activerecord:
+    models:
+      task: Tarefa
+      other: Tarefas
     attributes:
       person:
         name: Nome
@@ -10,6 +13,7 @@ pt-BR:
 
     errors:
       messages:
+
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
@@ -289,3 +293,9 @@ pt-BR:
   success_create: 'Cadastro feito com sucesso!'
   success_update: 'Cadastro atualizado com sucesso!'
   success_delete: 'Cadastro removido com successo!'
+
+  state:
+    rollback: Voltar para pendente
+    starting: Iniciar
+    delivering: Entregar
+    donning: Finalizar

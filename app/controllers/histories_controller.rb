@@ -10,6 +10,7 @@ class HistoriesController < ApplicationController
 
   def new
     @history = History.new
+    @states = []
     respond_to do |format|
       format.html
       format.js
@@ -37,6 +38,7 @@ class HistoriesController < ApplicationController
       format.html
       format.js
     end
+    @states = @history.next_state
   end
 
   def show
@@ -68,10 +70,20 @@ class HistoriesController < ApplicationController
   end
 
   def change_status
-    @history.send("#{params[:event]}!")
-    render json: @history, status: :ok
+    if @history.send("#{params[:event]}!")
+      flash.now[:notice] = t(:success_update)
+      flash.keep(:notice)
+      redirect_to authenticated_root_url
+    else
+      flash.now[:error] = @history.errors.full_messages.first
+      flash.keep(:error)
+      redirect_to authenticated_root_url
+    end
   rescue StandardError => e
-    render json: { errors: e }, status: 500
+    flash.now[:error] = @history.errors.full_messages.first
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

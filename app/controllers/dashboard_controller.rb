@@ -10,9 +10,9 @@ class DashboardController < BaseController
                        end
 
     @histories_pending = History.pending.by_project(session[:default_project])
-    @histories_started = History.started
-    @histories_delivered = History.delivered
-    @histories_done = History.done
+    @histories_started = History.started.by_project(session[:default_project])
+    @histories_delivered = History.delivered.by_project(session[:default_project])
+    @histories_done = History.done.by_project(session[:default_project])
   end
 
   def change_default_project

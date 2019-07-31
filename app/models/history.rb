@@ -53,12 +53,25 @@ class History < ApplicationRecord
     [1, 2, 3, 5, 8, 13]
   end
 
+  def next_state
+    case status
+    when 'pending'
+      ['starting']
+    when 'started'
+      ['rollback', 'delivering']
+    when 'delivered'
+      ['rollback', 'donning']
+    else
+      ['rollback']
+    end
+  end
+
   private
 
   def done_tasks
     if status == 'done'
       if tasks.map(&:done).uniq.include? false
-        errors.add(:tasks, 'not done')
+        errors.add(:tasks, 'não finalizadas')
       end
     end
   end

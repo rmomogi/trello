@@ -1,0 +1,13 @@
+.row.pb-2
+  .col-md-12
+    .card.history.drag-drop
+      .card-header
+        = "#{history.name} (#{history.points})"
+      .card-body
+        .deadline = "Deadline: #{l(history.deadline)}"
+        .owner = "Owner: #{history.owner.name}"
+        .actions.text-right
+          = link_to edit_history_path(history), {:class => 'pr-4', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} do
+            = fa_icon "edit"
+          a href="#" data-toggle='modal' data-target='#confirm-delete' data-href="#{history_path(history)}"
+            = fa_icon "trash"
