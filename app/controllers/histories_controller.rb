@@ -80,10 +80,9 @@ class HistoriesController < ApplicationController
       redirect_to authenticated_root_url
     end
   rescue StandardError => e
-    flash.now[:error] = @history.errors.full_messages.first
-    respond_to do |format|
-      format.js
-    end
+    flash.now[:error] = e.message
+    flash.keep(:error)
+    redirect_to authenticated_root_url
   end
 
   private

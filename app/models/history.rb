@@ -69,19 +69,18 @@ class History < ApplicationRecord
   private
 
   def done_tasks
-    if status == 'done'
-      if tasks.map(&:done).uniq.include? false
-        errors.add(:tasks, 'não finalizadas')
-      end
+    validate_tasks if status == 'done'
+  end
+
+  def validate_tasks
+    if tasks.map(&:done).uniq.include? false
+      errors.add(:tasks, 'não finalizadas')
     end
   end
 
   def started_after_finished
     return if finished_at.blank? || started_at.blank?
-
-    if finished_at < started_at
-      errors.add(:finished_at, "must be after the start date")
-    end
+    errors.add(:finished_at, 'must be after the start date') if finished_at < started_at
   end
 
   def rollback_pending
