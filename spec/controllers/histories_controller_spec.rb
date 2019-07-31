@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe HistoriesController, type: :controller do
-	let(:owner) { create(:person) }
-	let(:requester) { create(:person) }
+  let(:owner) { create(:person) }
+  let(:requester) { create(:person) }
   let(:project) { create(:project, manager: owner) }
 
   before do
@@ -110,19 +112,18 @@ RSpec.describe HistoriesController, type: :controller do
   private
 
   def generate_params(action)
-    { "history"=>
-        { "name"=> history.name,
-          "requester_id"=> history.requester_id,
-          "status"=> history.status,
-          "owner_id"=> history.owner_id,
-          "description"=> history.description,
-          "started_at"=> history.started_at,
-          "finished_at"=> history.finished_at,
-          "deadline"=> history.deadline,
-          "points"=> history.points
-        },
-        "controller"=>"histories",
-        "action"=>"#{action}",
-        "format"=> "json" }
+    { "history" =>
+        { "name" => history.name,
+          "requester_id" => history.requester_id,
+          "status" => history.status,
+          "owner_id" => history.owner_id,
+          "description" => history.description,
+          "started_at" => history.started_at,
+          "finished_at" => history.finished_at,
+          "deadline" => history.deadline,
+          "points" => history.points },
+      "controller" => "histories",
+      "action" => action.to_s,
+      "format" => "json" }
   end
 end

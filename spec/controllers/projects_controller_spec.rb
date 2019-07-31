@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ProjectsController, type: :controller do
-	let(:manager) { create(:person) }
+  let(:manager) { create(:person) }
 
   before do
     login_user
@@ -78,12 +80,11 @@ RSpec.describe ProjectsController, type: :controller do
   private
 
   def generate_params(action)
-    { "project"=>
-        { "name"=> project.name,
-          "manager_id"=> project.manager_id
-        },
-        "controller"=>"projects",
-        "action"=>"#{action}",
-        "format"=> "json" }
+    { "project" =>
+        { "name" => project.name,
+          "manager_id" => project.manager_id },
+      "controller" => "projects",
+      "action" => action.to_s,
+      "format" => "json" }
   end
 end

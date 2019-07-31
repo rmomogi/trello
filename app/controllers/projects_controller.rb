@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
-	before_action :set_project, only: [:show, :update, :destroy, :edit]
+  before_action :set_project, only: [:show, :update, :destroy, :edit]
 
   def new
     @project = Project.new

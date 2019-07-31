@@ -1,12 +1,13 @@
-class RegistrationsController < Devise::RegistrationsController
+# frozen_string_literal: true
 
+class RegistrationsController < Devise::RegistrationsController
   def resource_name
     :person
   end
 
   def new
     build_resource({})
-    respond_with self.resource
+    respond_with resource
   end
 
   def create

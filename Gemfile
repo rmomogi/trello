@@ -44,12 +44,12 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'json_matchers'
   gem 'pry-byebug'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
-  gem 'json_matchers'
-  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -65,15 +65,15 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'aasm'
+gem 'bootstrap-datepicker-rails'
+gem 'devise'
+gem 'dotenv'
 gem 'faker'
+gem 'font-awesome-rails'
+gem 'interact-rails'
 gem 'paper_trail'
+gem 'rack-cors'
+gem 'slim-rails'
+gem 'toastr-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'validates_email_format_of'
-gem 'rack-cors'
-gem 'dotenv'
-gem 'devise'
-gem 'toastr-rails'
-gem 'slim-rails'
-gem 'font-awesome-rails'
-gem 'bootstrap-datepicker-rails'
-gem 'interact-rails'

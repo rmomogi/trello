@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HistoriesController < ApplicationController
   before_action :set_history, only: [:show, :update, :destroy, :edit, :change_status]
 
@@ -66,12 +68,10 @@ class HistoriesController < ApplicationController
   end
 
   def change_status
-    begin
-      @history.send("#{params[:event]}!")
-      render json: @history, status: :ok
-    rescue => e
-      render json: { errors: e }, status: 500
-    end
+    @history.send("#{params[:event]}!")
+    render json: @history, status: :ok
+  rescue StandardError => e
+    render json: { errors: e }, status: 500
   end
 
   private
@@ -84,4 +84,3 @@ class HistoriesController < ApplicationController
     @history = History.find params[:id]
   end
 end
-

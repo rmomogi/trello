@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe TasksController, type: :controller do
@@ -85,13 +87,12 @@ RSpec.describe TasksController, type: :controller do
   private
 
   def generate_params(action)
-    { "task"=>
-        { "description"=> task.description,
-          "done"=> task.done,
-          "history_id"=> task.history_id
-        },
-        "controller"=>"tasks",
-        "action"=>"#{action}",
-        "format"=> "json" }
+    { "task" =>
+        { "description" => task.description,
+          "done" => task.done,
+          "history_id" => task.history_id },
+      "controller" => "tasks",
+      "action" => action.to_s,
+      "format" => "json" }
   end
 end

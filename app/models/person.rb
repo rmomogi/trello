@@ -6,7 +6,7 @@ class Person < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-	has_many :projects, dependent: :destroy, foreign_key: 'manager_id'
+  has_many :projects, dependent: :destroy, foreign_key: 'manager_id'
   has_many :histories, dependent: :destroy, foreign_key: 'requester_id'
 
   validates :email, presence: true, email_format: { message: 'is not looking good' }

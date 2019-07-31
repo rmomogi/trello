@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy, :edit]
 
   def new
     @task = Task.new
     respond_to do |format|
-      format.json { render :json => @task }
+      format.json { render json: @task }
     end
   end
 
