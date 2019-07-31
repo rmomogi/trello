@@ -80,7 +80,7 @@ class History < ApplicationRecord
 
   def started_after_finished
     return if finished_at.blank? || started_at.blank?
-    errors.add(:finished_at, "must be after the start date") if finished_at < started_at
+    errors.add(:finished_at, 'must be after the start date') if finished_at < started_at
   end
 
   def rollback_pending
