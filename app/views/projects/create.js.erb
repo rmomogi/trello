@@ -1,0 +1,8 @@
+<% if flash['success'] %>
+  toastr.success("<%= flash['success'].html_safe %>")
+  $("#modal-window").modal('hide')
+  window.location = '/'
+<% end %>
+<% if flash['error'] %>
+  toastr.error("<%= flash['error'].html_safe %>")
+<% end %>

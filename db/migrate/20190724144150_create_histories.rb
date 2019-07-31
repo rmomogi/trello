@@ -5,10 +5,11 @@ class CreateHistories < ActiveRecord::Migration[5.2]
     	t.belongs_to :requester, references: :people, index: true
     	t.string :status, default: :pending
     	t.belongs_to :owner, references: :people, index: true
+      t.belongs_to :project, references: :projects, index: true
       t.text :description, default: ""
     	t.datetime :started_at
     	t.datetime :finished_at
-    	t.datetime :deadline
+    	t.date :deadline
     	t.integer :points
       t.timestamps
     end

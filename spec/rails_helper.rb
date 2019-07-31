@@ -15,6 +15,8 @@ require "json_matchers/rspec"
 
 JsonMatchers.schema_root = "spec/support/api/schemas"
 
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e

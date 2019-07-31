@@ -1,0 +1,60 @@
+- unless @default_project
+  .col-md-4.col-sm-12.offset-md-4.mt-5
+    .card
+      .card-header.bg-secondary.card-xs
+        span.text-white Projeto
+      .card-body
+          | Selecione o projeto que deseja visualizar
+- else
+  .row.mt-4
+    .col-md-3.col-xs-12
+      .card.box-pending
+        .row
+          .col-md-12
+            .card-header.bg-secondary.text-center
+              span.text-white Pendente
+            .card-body.height-12
+              - @histories_pending.each do |history|
+                .row.pb-2
+                  .col-md-12
+                    .card.history.drag-drop
+                      .card-header
+                        = "#{history.name} (#{history.points})"
+                      .card-body
+                        .deadline = "Deadline: #{l(history.deadline)}"
+                        .owner = "Owner: #{history.owner.name}"
+                        .actions.text-right
+                          = link_to edit_history_path(history), {:class => 'pr-4', :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} do
+                            = fa_icon "edit"
+                          a href="#" data-toggle='modal' data-target='#confirm-delete' data-href="#{history_path(history)}"
+                            = fa_icon "trash"
+
+    .col-md-3.col-xs-12
+      .card.box-started
+        .row
+          .col-md-12
+            .card-header.bg-secondary.text-center
+              span.text-white Em desenvolvimento
+            .card-body.height-12
+              - @histories_started.each do |histories|
+                = histories.name
+
+    .col-md-3.col-xs-12
+      .card
+        .row
+          .col-md-12
+            .card-header.bg-secondary.text-center
+              span.text-white Entregue
+            .card-body.height-12
+              - @histories_delivered.each do |histories|
+                = histories.name
+
+    .col-md-3.col-xs-12
+      .card
+        .row
+          .col-md-12
+            .card-header.bg-secondary.text-center
+              span.text-white Finalizado
+            .card-body.height-12
+              - @histories_done.each do |histories|
+                = histories.name

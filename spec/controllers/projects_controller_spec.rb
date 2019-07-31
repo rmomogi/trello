@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::ProjectsController, type: :controller do
+RSpec.describe ProjectsController, type: :controller do
 	let(:manager) { create(:person) }
 
+  before do
+    login_user
+  end
+
   describe 'GET #new' do
-    before { post :new, format: :json }
+    before { post :new, format: :js }
     it 'return status 200' do
       expect(response.status).to eq 200
-    end
-
-    it 'return new task' do
-      expect(response).to match_response_schema("project", strict: true)
     end
   end
 
@@ -18,14 +18,14 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
     let(:project) { build(:project, manager: manager) }
 
     it 'way success' do
-      post :create, params: generate_params('create')
+      post :create, params: generate_params('create'), format: :js
       expect(response).to be_successful
     end
 
     it 'way failed' do
       project.name = nil
-      post :create, params: generate_params('create')
-      expect(response).not_to be_successful
+      post :create, params: generate_params('create'), format: :js
+      expect(flash[:error]).to be_present
     end
   end
 

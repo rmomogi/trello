@@ -1,4 +1,4 @@
-class Api::V1::TasksController < ApplicationController
+class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy, :edit]
 
   def new
@@ -10,7 +10,7 @@ class Api::V1::TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.valid?
+    if @task.save
       render json: @task, status: :ok
     else
       render json: { errors: @task.errors.full_messages }, status: 500

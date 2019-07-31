@@ -7,6 +7,8 @@ class History < ApplicationRecord
 
   belongs_to :owner, class_name: 'Person'
   belongs_to :requester, class_name: 'Person'
+  belongs_to :project
+
   has_many :tasks
 
   validates :name, presence: true
@@ -16,6 +18,13 @@ class History < ApplicationRecord
 
   validate :done_tasks
   validate :started_after_finished
+
+  scope :pending, -> { where(status: 'pending').order(id: :desc) }
+  scope :started, -> { where(status: 'started').order(id: :desc) }
+  scope :delivered, -> { where(status: 'delivered').order(id: :desc) }
+  scope :done, -> { where(status: 'done').order(id: :desc) }
+
+  scope :by_project, ->(project_id) { where("project_id = ?", project_id) }
 
   aasm column: 'status' do
     state :pending, initial: true
@@ -40,11 +49,17 @@ class History < ApplicationRecord
     end
   end
 
+  def select_points
+    [1, 2, 3, 5, 8, 13]
+  end
+
   private
 
   def done_tasks
-    if tasks.map(&:done).uniq.include? false
-      errors.add(:tasks, 'not done')
+    if status == 'done'
+      if tasks.map(&:done).uniq.include? false
+        errors.add(:tasks, 'not done')
+      end
     end
   end
 

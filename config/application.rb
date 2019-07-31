@@ -22,6 +22,13 @@ module Trello
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    config.time_zone = "Brasilia"
+    config.active_record.default_timezone = :local
+
+    config.autoload_paths << Rails.root.join('lib')
+
+    config.i18n.default_locale = 'pt-BR'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
@@ -29,5 +36,17 @@ module Trello
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource(
+          '*',
+          headers: :any,
+          expose: ["Authorization"],
+          methods: [:get, :patch, :put, :delete, :post, :options, :show]
+        )
+      end
+    end
   end
 end

@@ -1,0 +1,27 @@
+<div class="col-md-4 col-sm-12 offset-md-4 mt-5">
+  <div class="card">
+    <div class="card-header bg-primary card-xs">
+      <span  class="text-white">Login</span>
+    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class='card-body'>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+      </div>
+    </div>
+    <div class="card-footer text-right">
+      <%= f.submit "Acessar", class: 'btn btn-primary btn-sm' %>
+    </div>
+    <% end %>
+  </div>
+  <div class="text-center mt-1">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+

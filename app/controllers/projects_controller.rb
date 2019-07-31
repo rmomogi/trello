@@ -1,19 +1,25 @@
-class Api::V1::ProjectsController < ApplicationController
+class ProjectsController < ApplicationController
 	before_action :set_project, only: [:show, :update, :destroy, :edit]
 
   def new
     @project = Project.new
     respond_to do |format|
-      format.json { render :json => @project }
+      format.html
+      format.js
     end
   end
 
   def create
     @project = Project.new(project_params)
-    if @project.valid?
-      render json: @project, status: :ok
+    @project.manager = current_person
+
+    if @project.save
+      flash.now[:success] = t(:success_create)
     else
-      render json: { errors: @project.errors.full_messages }, status: 500
+      flash.now[:error] = @project.errors.full_messages.first
+    end
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -41,7 +47,7 @@ class Api::V1::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :manager_id)
+    params.require(:project).permit(:name)
   end
 
   def set_project

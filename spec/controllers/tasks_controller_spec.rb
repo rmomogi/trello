@@ -1,9 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::TasksController, type: :controller do
+RSpec.describe TasksController, type: :controller do
+  let(:person) { create(:person) }
+  let(:project) { create(:project, manager: person) }
+  let(:history) { create(:history, owner: person, requester: person, project: project) }
+
+  before do
+    login_user
+  end
 
   describe 'GET #new' do
     before { post :new, format: :json }
+
     it 'return status 200' do
       expect(response.status).to eq 200
     end
@@ -14,11 +22,10 @@ RSpec.describe Api::V1::TasksController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:history) { create(:history) }
     let(:task) { build(:task, history: history) }
 
     it 'way success' do
-      post :create, params: generate_params('create')
+      post :create, params: generate_params('create'), format: :js
       expect(response).to be_successful
     end
 
@@ -30,7 +37,6 @@ RSpec.describe Api::V1::TasksController, type: :controller do
   end
 
   describe 'GET #edit' do
-    let(:history) { create(:history) }
     let(:task) { create(:task, history: history) }
     before { get :edit, params: { id: task.id }, format: :json }
 
@@ -44,7 +50,6 @@ RSpec.describe Api::V1::TasksController, type: :controller do
   end
 
   describe 'UPDATE #create' do
-    let(:history) { create(:history) }
     let(:task) { create(:task, history: history) }
 
     it 'way success' do
@@ -60,7 +65,6 @@ RSpec.describe Api::V1::TasksController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:history) { create(:history) }
     let(:task) { create(:task, history: history) }
 
     it 'way success' do
@@ -70,7 +74,6 @@ RSpec.describe Api::V1::TasksController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:history) { create(:history) }
     let(:task) { create(:task, history: history) }
 
     it 'way success' do

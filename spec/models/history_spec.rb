@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe History, type: :model do
-  let(:history) { build(:history) }
+  let(:project) { build(:project) }
+  let(:history) { build(:history, project: project) }
 
   describe '#associations' do
     it { is_expected.to belong_to :owner }
@@ -37,7 +38,10 @@ RSpec.describe History, type: :model do
       end
 
       context 'does when tasks not done' do
-        before { history.tasks << build_list(:task, 3) }
+        before do
+          history.status = 'done'
+          history.tasks << build_list(:task, 3)
+        end
         it { expect(history.valid?).to be_falsey }
       end
     end

@@ -1,0 +1,44 @@
+<%= form_for(@history, :remote => true) do |f| %>
+	<div class='modal-dialog modal-dialog-centered'>
+		<div class='modal-content'>
+			<div class='modal-header'>
+			  <h5 class="modal-title" id="exampleModalLongTitle">História</h5>
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <span aria-hidden="true">&times;</span>
+	      </button>
+	    </div>
+			<div class='modal-body'>
+	        <div class="field">
+	   	    	<%= f.label :name %><br />
+	        	<%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+	      	</div>
+	      	<div class="field">
+	   	    	<%= f.label :description %><br />
+	        	<%= f.text_area :description, autofocus: true, autocomplete: "description", class: 'form-control' %>
+	      	</div>
+	      	<div class="field">
+	   	    	<%= f.label :deadline %><br />
+	        	<%= f.text_field :deadline, autofocus: true, autocomplete: "deadline", value: @history.deadline.nil? ? Date.current.strftime("%d/%m/%Y") : @history.deadline.strftime("%d/%m/%Y"), class: 'form-control datepicker' %>
+	      	</div>
+	      	<div class="field">
+	   	    	<%= f.label :requester %><br />
+	        	<%= f.select :requester_id, select_requester, {}, class: 'form-control' %>
+	      	</div>
+	      	<div class="field">
+	   	    	<%= f.label :points %><br />
+	        	<%= f.select :points, select_points, {}, class: 'form-control' %>
+	      	</div>
+			</div>
+			<div class='modal-footer'>
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      <button type="submit" class="btn btn-primary">Save changes</button>
+	     </div>
+		</div>
+	</div>
+<% end %>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+    language: 'pt-BR'
+  });
+  $('.datepicker').mask('00/00/0000');
+</script>

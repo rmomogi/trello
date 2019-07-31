@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_052745) do
+ActiveRecord::Schema.define(version: 2019_07_30_182546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,14 +20,16 @@ ActiveRecord::Schema.define(version: 2019_07_28_052745) do
     t.bigint "requester_id"
     t.string "status", default: "pending"
     t.bigint "owner_id"
+    t.bigint "project_id"
     t.text "description", default: ""
     t.datetime "started_at"
     t.datetime "finished_at"
-    t.datetime "deadline"
+    t.date "deadline"
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_histories_on_owner_id"
+    t.index ["project_id"], name: "index_histories_on_project_id"
     t.index ["requester_id"], name: "index_histories_on_requester_id"
   end
 
@@ -37,6 +39,12 @@ ActiveRecord::Schema.define(version: 2019_07_28_052745) do
     t.string "role", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_people_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
   end
 
   create_table "projects", force: :cascade do |t|
