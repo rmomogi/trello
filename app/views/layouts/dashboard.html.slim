@@ -21,8 +21,8 @@ html
               - @projects.each do |project|
                 = link_to project.name, dashboard_change_default_project_path(id: project.id), {:class => 'dropdown-item', :method => 'post', :id => project.id }
           - if @default_project
-            li.nav-item.ml-5
-              .navbar-text.text-white = "Projeto: #{@default_project.name}"
+              li.nav-item.ml-5
+                .navbar-text.text-white = "Projeto: #{@default_project.name}"
     .container-fluid
       = yield
       .row.fixed-row-bottom

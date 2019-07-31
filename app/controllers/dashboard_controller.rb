@@ -6,7 +6,7 @@ class DashboardController < BaseController
 		if session[:default_project]
 			@default_project = Project.find session[:default_project]
 		else
-			@default_project = ''
+			@default_project = nil
 		end
 
 		@histories_pending = History.pending.by_project(session[:default_project])
