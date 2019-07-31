@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-07-31T21:31:01+00:00">2019-07-31T21:31:01+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-07-31T21:40:49+00:00">2019-07-31T21:40:49+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -153,7 +153,7 @@
       <tr>
         <td class="strong"><a href="#113ab9421bba574702d9077d9a7018c7304d3695" class="src_link" title="app/models/history.rb">app/models/history.rb</a></td>
         <td class="green strong">92.59 %</td>
-        <td>99</td>
+        <td>98</td>
         <td>54</td>
         <td>50</td>
         <td>4</td>
@@ -2767,166 +2767,160 @@
         <li class="covered" data-hits="41" data-linenumber="72">
           <span class="hits">41</span>
           
-          <code class="ruby">    if status == &#39;done&#39;</code>
+          <code class="ruby">    validate_tasks if status == &#39;done&#39;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="73">
-          <span class="hits">2</span>
-          
-          <code class="ruby">      if tasks.map(&amp;:done).uniq.include? false</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="74">
-          <span class="hits">1</span>
-          
-          <code class="ruby">        errors.add(:tasks, &#39;não finalizadas&#39;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="75">
-          
-          
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="76">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="never" data-hits="" data-linenumber="73">
           
           
           <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="74">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="75">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def validate_tasks</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="76">
+          <span class="hits">2</span>
+          
+          <code class="ruby">    if tasks.map(&amp;:done).uniq.include? false</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="77">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      errors.add(:tasks, &#39;não finalizadas&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="78">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="79">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="79">
+        <li class="covered" data-hits="1" data-linenumber="81">
           <span class="hits">1</span>
           
           <code class="ruby">  def started_after_finished</code>
         </li>
       
-        <li class="covered" data-hits="41" data-linenumber="80">
+        <li class="covered" data-hits="41" data-linenumber="82">
           <span class="hits">41</span>
           
           <code class="ruby">    return if finished_at.blank? || started_at.blank?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="81">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="82">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    if finished_at &lt; started_at</code>
-        </li>
-      
         <li class="covered" data-hits="1" data-linenumber="83">
           <span class="hits">1</span>
           
-          <code class="ruby">      errors.add(:finished_at, &quot;must be after the start date&quot;)</code>
+          <code class="ruby">    errors.add(:finished_at, &quot;must be after the start date&quot;) if finished_at &lt; started_at</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="84">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="85">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="86">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="87">
+        <li class="covered" data-hits="1" data-linenumber="86">
           <span class="hits">1</span>
           
           <code class="ruby">  def rollback_pending</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="88">
+        <li class="covered" data-hits="3" data-linenumber="87">
           <span class="hits">3</span>
           
           <code class="ruby">    self.finished_at = nil</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="89">
+        <li class="covered" data-hits="3" data-linenumber="88">
           <span class="hits">3</span>
           
           <code class="ruby">    self.started_at = nil</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="90">
+        <li class="never" data-hits="" data-linenumber="89">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="91">
+        <li class="never" data-hits="" data-linenumber="90">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="92">
+        <li class="covered" data-hits="1" data-linenumber="91">
           <span class="hits">1</span>
           
           <code class="ruby">  def start_history</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="93">
+        <li class="covered" data-hits="6" data-linenumber="92">
           <span class="hits">6</span>
           
           <code class="ruby">    self.started_at = DateTime.current</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="94">
+        <li class="never" data-hits="" data-linenumber="93">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="95">
+        <li class="never" data-hits="" data-linenumber="94">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="96">
+        <li class="covered" data-hits="1" data-linenumber="95">
           <span class="hits">1</span>
           
           <code class="ruby">  def finish_history</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="97">
+        <li class="covered" data-hits="3" data-linenumber="96">
           <span class="hits">3</span>
           
           <code class="ruby">    self.finished_at = DateTime.current</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="98">
+        <li class="never" data-hits="" data-linenumber="97">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="99">
+        <li class="never" data-hits="" data-linenumber="98">
           
           
           <code class="ruby">end</code>
