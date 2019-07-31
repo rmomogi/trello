@@ -4,5 +4,5 @@ Itens faltantes no projeto:
 
 * Botão para alteração do status
 * Drag on Drop (Frontend)
-* Logout
+* ~~Logout~~
 * Inclusão da Task (Frontend)
