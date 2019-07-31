@@ -18,7 +18,7 @@
 //= require toastr
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js
-//= require jquery-mask-min
+//= require jquery.mask.min
 //= require_tree .
 
 $(document).ready(function($){
