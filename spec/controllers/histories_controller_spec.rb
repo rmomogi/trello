@@ -104,7 +104,7 @@ RSpec.describe HistoriesController, type: :controller do
     context 'when failed' do
       it 'send invalid event' do
         post :change_status, params: { id: history.id, event: 'delivering' }, format: :js
-        expect(response).not_to be_successful
+        expect(flash[:error]).to be_present
       end
     end
   end
